@@ -1,0 +1,270 @@
+================================================================================
+HarborPoint Financial Services — Security Assessment Portfolio (Complete)
+================================================================================
+
+PORTFOLIO CONTENTS (10 Files, 18–22 Pages)
+================================================================================
+
+1. PUBLIC_README.md
+   - Project overview and navigation guide
+   - Assessment methodology and framework
+   - Key findings and learnings
+   - ~11 KB (250 lines)
+
+2. PUBLIC_01_Disclaimer.md
+   - Simulation scope and assessment boundaries
+   - Limitations and intended use
+   - ~3.2 KB (60 lines)
+
+3. PUBLIC_02_Company_Scenario.md
+   - HarborPoint company profile (175 employees, $35M revenue)
+   - Technology environment and architecture
+   - Business processes with RTO/RPO
+   - Regulatory context and threat landscape
+   - Assessment methodology (risk matrix, maturity scale)
+   - ~7.2 KB (150 lines)
+
+4. PUBLIC_03_Architecture.md
+   - Logical system architecture (3 domains)
+   - Architecture diagram (text-based)
+   - Critical data flows
+   - Single points of failure
+   - Network segmentation and identity architecture
+   - Architecture gaps and risks
+   - ~8.9 KB (180 lines)
+
+5. PUBLIC_04_Top_10_Risks.md
+   - Complete risk register (10 risks)
+   - Each risk: threat, impact, NIST CSF mapping, recommendation
+   - Risk summary table sorted by residual score
+   - Priority classification (P1–P4)
+   - ~13 KB (250 lines)
+
+6. PUBLIC_05_NIST_Gap_Analysis.md
+   - NIST CSF 2.0 maturity assessment
+   - Current (1.8/5.0) vs. Target (2.8/5.0)
+   - Detailed analysis of 6 Functions
+   - Year 1 maturity targets and investment
+   - ~9.5 KB (180 lines)
+
+7. PUBLIC_06_Remediation_Roadmap.md
+   - 4-phase 12-month execution plan (Q1–Q4 2027)
+   - Each phase: initiatives, owners, timeline, cost, impact
+   - Resource allocation and staffing
+   - Success metrics by quarter
+   - Risk of not executing
+   - ~11 KB (190 lines)
+
+8. PUBLIC_07_Executive_Dashboard.md
+   - Maturity overview and current status
+   - Top 10 risks with remediation timeline
+   - Phase progress checklist and milestones
+   - Resource allocation
+   - Risk acceptance and board reporting framework
+   - ~7.6 KB (150 lines)
+
+9. PUBLIC_08_Executive_Summary.md
+   - Board-level overview of findings and recommendations
+   - Critical risks and business impact
+   - NIST maturity assessment summary
+   - Regulatory alignment (FDIC, GLBA, FFIEC)
+   - Top 12 recommendations in priority sequence
+   - Risk acceptance and organizational readiness
+   - Board-level voting recommendations
+   - ~12 KB (250 lines)
+
+10. PUBLIC_INDEX.md
+    - Portfolio navigation and usage guide
+    - Suggested reading paths for different audiences
+    - Key metrics at a glance
+    - What this portfolio demonstrates/does not demonstrate
+    - Key learnings and repository structure
+    - ~8 KB (160 lines)
+
+================================================================================
+TOTAL PORTFOLIO STATISTICS
+================================================================================
+
+Total Files:        10 markdown files
+Total Lines:        ~1,622 lines
+Total Size:         ~94 KB
+Estimated Pages:    18–22 pages (printed)
+Assessment Period:  October 2026 (1 month simulated)
+Framework:          NIST Cybersecurity Framework 2.0
+
+================================================================================
+KEY FINDINGS SUMMARY
+================================================================================
+
+Current Organizational Maturity:    1.8 of 5.0 (Initial/Developing)
+Target Year 1 Maturity:             2.8 of 5.0 (Defined)
+
+Top Critical Risks (Residual):
+  • RK-003: Untested Backup Restoration          (Score: 15 - Critical)
+  • RK-007: Ransomware Attack on Portal & Data   (Score: 10 - High)
+
+High-Risk Findings (Residual Score: 8 each):
+  • RK-001: Incomplete MFA on Admin Accounts
+  • RK-002: Service Account Credentials in Config Files
+  • RK-004: Cloud Misconfiguration (S3 Buckets)
+  • RK-005: CloudTrail Centralization Gap
+  • RK-006: Third-Party Vendor Risk
+  • RK-008: Incident Response Testing Gap
+  • RK-010: Privileged Access Management Gap
+
+Year 1 Investment:  $475K (tools, services, staffing)
+Staffing Addition:  +0.5 FTE Security Engineer (~$120K)
+
+Phased Remediation:
+  Phase 1 (Months 1–3, $115K):  Immediate actions (MFA, backup, governance, IR)
+  Phase 2 (Months 4–6, $145K):  Control implementation (AWS Config, CloudTrail)
+  Phase 3 (Months 7–9, $145K):  Enhancement & testing (PAM, JIT, threat hunting)
+  Phase 4 (Months 10–12, $70K): Optimization & documentation
+
+================================================================================
+HOW TO USE THIS PORTFOLIO
+================================================================================
+
+FOR SECURITY PRACTITIONERS:
+  1. Read: PUBLIC_02_Company_Scenario.md (understand environment)
+  2. Study: PUBLIC_03_Architecture.md (system design)
+  3. Deep-dive: PUBLIC_04_Top_10_Risks.md (risk assessment)
+  4. Review: PUBLIC_05_NIST_Gap_Analysis.md (maturity)
+  5. Examine: PUBLIC_06_Remediation_Roadmap.md (execution)
+
+FOR COMPLIANCE/GRC PROFESSIONALS:
+  1. Read: PUBLIC_01_Disclaimer.md (scope & limitations)
+  2. Study: PUBLIC_05_NIST_Gap_Analysis.md (NIST CSF 2.0)
+  3. Examine: PUBLIC_06_Remediation_Roadmap.md (governance)
+  4. Reference: PUBLIC_08_Executive_Summary.md (regulatory alignment)
+
+FOR EXECUTIVES/BOARD:
+  1. Read: PUBLIC_08_Executive_Summary.md (findings & recommendations)
+  2. Review: PUBLIC_07_Executive_Dashboard.md (metrics & timeline)
+  3. Reference: PUBLIC_06_Remediation_Roadmap.md (investment & ROI)
+
+FOR HIRING MANAGERS/RECRUITERS:
+  1. Start: PUBLIC_README.md (overview & learnings)
+  2. Review: PUBLIC_08_Executive_Summary.md (decision-making approach)
+  3. Skim: PUBLIC_04_Top_10_Risks.md (prioritization methodology)
+
+================================================================================
+PORTFOLIO DEMONSTRATES
+================================================================================
+
+✓ Risk assessment & prioritization (5×5 Likelihood × Impact matrix)
+✓ NIST CSF 2.0 maturity assessment & gap analysis
+✓ Business-driven security strategy with phased roadmap
+✓ Remediation planning with timelines, owners, costs, success metrics
+✓ Executive communication (board-level summary & voting recommendations)
+✓ Regulatory alignment (FDIC, GLBA, FFIEC, Basel III)
+✓ Governance framework (steering committee, risk acceptance, reporting)
+✓ Resource planning & staffing model
+
+PORTFOLIO DOES NOT DEMONSTRATE
+
+✗ Penetration testing or detailed vulnerability assessment
+✗ Compliance audit (FDIC, GLBA, BSA/AML)
+✗ Application security review or code analysis
+✗ Detailed incident forensics or threat hunting
+✗ Physical security assessment
+✗ Procurement or vendor comparison details
+
+================================================================================
+ASSESSMENT METHODOLOGY
+================================================================================
+
+Risk Scoring:           5×5 Likelihood × Impact matrix (1–25 scale)
+Risk Categories:       Critical (16–25), High (8–15), Moderate (4–7), Low (1–3)
+Residual Risk:         Assessed via documented judgment (not percentage multipliers)
+NIST CSF Framework:    Official 2.0 structure (6 Functions, 22 Subcategories)
+Maturity Scale:        Project-specific 0–5 scale (distinct from NIST outcomes)
+  0 = Not Implemented
+  1 = Initial (ad-hoc, reactive)
+  2 = Developing (documented, limited consistency)
+  3 = Defined (standardized, repeatable)
+  4 = Managed (metrics-driven, continuous improvement)
+  5 = Optimized (proactive, integrated)
+
+================================================================================
+KEY ASSUMPTIONS & CONSTRAINTS
+================================================================================
+
+Assumptions:
+  • Assessment scope is simulation (no real data collected)
+  • Technology environment is representative of mid-market financial services
+  • Risk likelihood and impact reflect financial services threat landscape
+  • Residual risk assumes controls are properly implemented
+  • Phased timeline assumes 60% Security Manager allocation + existing staff
+
+Constraints:
+  • Limited security staffing (0.6 FTE baseline + 0.5 FTE proposed)
+  • Budget approval required for Phase 1 ($115K); sequential approval for Phases 2–4
+  • Vendor dependencies (secrets platform, PAM) introduce 60–90 day timelines
+  • Staff turnover risk during long-duration initiatives (PAM, threat hunting)
+  • Single-region AWS architecture limits RTO/RPO targets
+
+Mitigations:
+  • Phase 1 focus on quick wins (MFA, 30 days) + foundation (backup, governance)
+  • Parallel execution where dependencies allow
+  • Quarterly risk acceptance reviews
+  • Year 2 planning begins in Q3 2027
+
+================================================================================
+RECOMMENDED NEXT STEPS
+================================================================================
+
+Immediate (Week 1):
+  1. Share Executive Summary (PUBLIC_08) with Board
+  2. Establish Executive Security Steering Committee
+  3. Secure Phase 1 budget approval ($115K)
+
+Short-term (Weeks 2–4):
+  4. Launch MFA enforcement (30-day timeline, Phase 1)
+  5. Schedule backup restoration test (45-day timeline, Phase 1)
+  6. Draft incident response tabletop (60-day timeline, Phase 1)
+
+Medium-term (Months 1–3):
+  7. Execute Phase 1 initiatives (10 concurrent + dependent projects)
+  8. Conduct quarterly risk acceptance review
+  9. Plan Phase 2 procurement (secrets platform, PAM evaluation, AWS Config)
+
+Ongoing:
+  10. Monthly steering committee meetings
+  11. Quarterly board risk committee reporting
+  12. Annual plan refresh and Year 2 roadmap development
+
+================================================================================
+PORTFOLIO DISCLAIMER
+================================================================================
+
+This portfolio is a complete simulation designed to demonstrate:
+  • Enterprise security risk assessment methodology
+  • NIST CSF 2.0 application and maturity assessment
+  • Business-driven remediation roadmap development
+  • Executive communication and board governance
+
+The organization, systems, risks, and findings are entirely fictional.
+No real data was collected or analyzed. The assessment is representative
+of financial services industry practices and reflects realistic (but
+simulated) threat landscape and risk profiles.
+
+This portfolio is suitable for:
+  • Training and educational purposes
+  • Demonstrating assessment methodology
+  • Illustrating security strategy communication
+  • Supporting hiring/recruitment discussions
+  • Portfolio review in GRC/security contexts
+
+This portfolio is NOT suitable for:
+  • Actual compliance decisions
+  • Real organizational risk acceptance
+  • Regulatory submission or audit
+  • Production environment guidance
+  • Clinical security decisions
+
+See PUBLIC_01_Disclaimer.md for detailed scope and limitations.
+
+================================================================================
+END OF PORTFOLIO SUMMARY
+================================================================================
