@@ -21,30 +21,26 @@ HarborPoint's security controls are **partially deployed** across the organizati
 
 ---
 
-## Critical Risks (Current Residual Score 15+)
+## Critical Risk (Current Residual Score 16+)
 
 | Risk | Current Residual Score | Business Impact | Mitigation Timeline |
 |------|-----------------|-----------------|-------------------|
-| **RK-001: Incomplete MFA** | 15 (Critical) | Credential compromise; admin account takeover; lateral movement to databases; data breach | 30 days (Phase 1) |
 | **RK-002: Service Account Credentials in Config Files** | 16 (Critical) | Unencrypted credentials in repositories; broad database access; ransomware lateral movement | 60 days (Phase 1) |
-| **RK-003: Untested Backup Restoration** | 15 (Critical) | Complete data loss; business continuity failure; regulatory non-compliance; revenue loss | 45 days (Phase 1) |
-| **RK-007: Ransomware Attack on Portal & Databases** | 15 (Critical) | Business disruption; payment processing halt; extended recovery window if backup untested; regulatory penalties | 45 days (Phase 1) |
 
-**Key Insight:** All four critical risks are Phase 1 priorities. RK-001 and RK-002 are quick wins (30–60 days) with high leverage. RK-003 and RK-007 require complementary controls (backup testing + ransomware response playbooks).
+**Key Insight:** This is the sole Critical residual risk. RK-001, RK-003, and RK-007 (all 15, High) are Phase 1 priorities but require different remediation approaches (MFA enforcement, backup testing, ransomware response).
 
----
+## High Risks (Current Residual Score 12–15)
 
-## High-Risk Findings (Current Residual Score 8–12)
-
-| Risk | Category | Current Residual Score | Root Cause | Quick Fix | Full Remediation |
-|------|----------|-----------|-----------|-----------|-----------------|
-| **RK-004: S3 Bucket Misconfiguration** | Cloud Security | 12 (High) | No continuous compliance monitoring | AWS Config rules (manual audit) | 30-day Phase 2 |
-| **RK-005: CloudTrail Logs Not Centralized to SIEM** | Logging & Monitoring | 12 (High) | CloudTrail enabled; logs not forwarded to Splunk | Splunk forwarder setup | 45-day Phase 2 |
-| **RK-006: Third-Party Vendor Risk** | Vendor Management | 8 (High) | Informal vendor risk assessment | Risk assessment template | 90-day Phase 2 |
-| **RK-008: Incident Response Plan Not Tested** | Incident Response | 8 (High) | Plan exists; no documented tabletop exercises | Schedule tabletop | 60-day Phase 1 |
-| **RK-010: Privilege Access Management (PAM) Gap** | Privileged Access | 8 (High) | Manual privilege management; no audit trail | PAM platform evaluation POC | 90-day Phase 3 |
+| Risk | Current Residual Score | Business Impact | Mitigation Timeline |
+|------|-----------------|-----------------|-------------------|
+| **RK-001: Incomplete MFA** | 15 (High) | Credential compromise; admin account takeover; lateral movement to databases | 30 days (Phase 1) |
+| **RK-003: Untested Backup Restoration** | 15 (High) | Complete data loss; business continuity failure; regulatory non-compliance | 45 days (Phase 1) |
+| **RK-007: Ransomware Attack on Portal & Databases** | 15 (High) | Business disruption; payment processing halt; potential revenue loss | 45 days (Phase 1) |
+| **RK-004: S3 Bucket Misconfiguration** | 12 (High) | Customer PII exposure; breach notification; regulatory scrutiny | 30 days (Phase 2) |
+| **RK-005: CloudTrail Logs Not Centralized to SIEM** | 12 (High) | Delayed detection of cloud-based attacks; investigation requires manual log review | 45 days (Phase 2) |
 
 ---
+
 
 ## NIST CSF 2.0 Maturity Assessment
 
@@ -126,11 +122,10 @@ The roadmap is **not** a compliance audit; it is a **business-driven** remediati
 
 | Scenario | Current State | Without Roadmap | With Roadmap |
 |----------|---------------|-----------------|--------------|
-| **Credential Compromise (Phishing/Spray)** | Likelihood 4 (High) | Admin account takeover; lateral movement to databases | MFA enforcement reduces likelihood to 1 by Week 4 |
-| **Ransomware Incident** | Likelihood 3 (Moderate); Response untested | Uncontrolled encryption; extended recovery; revenue loss | EDR tuning + tested response playbook; containment within 30 min by Q1 |
-| **Backup Failure** | Unknown RTO/RPO | Permanent data loss; regulatory non-compliance | Quarterly testing validates recovery; RTO measured and predictable by Week 6 |
-| **S3 Bucket Exposure** | Likelihood 3 (Moderate) | Customer PII exposure; breach notification; FDIC finding | AWS Config + monthly audit; misconfiguration detected within 24 hours by Q2 |
-| **FDIC Examination Finding** | Likely (based on industry trends) | Remediation orders; regulatory penalties; reputational damage | Remediation roadmap demonstrates proactive response; reduces severity of findings |
+| **Credential Compromise (Phishing/Spray)** | Likelihood 4 (High) | Admin account takeover; lateral movement to databases | MFA enforcement eliminates credential-only attacks |
+| **Ransomware Incident** | Likelihood 3 (Moderate); Response untested | Uncontrolled encryption; extended recovery; revenue loss | EDR tuning + tested response playbook; defined response procedures |
+| **Backup Failure** | Unknown RTO/RPO | Permanent data loss; regulatory non-compliance | Quarterly testing validates recovery; RTO/RPO measured and predictable |
+| **S3 Bucket Exposure** | Likelihood 3 (Moderate) | Customer PII exposure; breach notification; regulatory scrutiny | AWS Config + continuous compliance monitoring reduces detection latency |
 
 ---
 
@@ -162,8 +157,8 @@ The roadmap is **not** a compliance audit; it is a **business-driven** remediati
 
 **Expected Outcomes (12 Months):**
 - NIST CSF maturity: 1.8 → 2.8 (Initial → Defined)
-- Critical risks reduced: 4 → 1–2 (RK-001, RK-002, RK-003, RK-007 mitigated to High/Moderate by end of Phase 1)
-- High risks reduced: 5 → 2–3 (remaining High risks require Phase 2+ investments)
+- Critical risks reduced: 1 → 0 (RK-002 mitigated to High by end of Phase 1)
+- High risks reduced: 8 → 4–5 (remaining High risks require Phase 2+ investments)
 - Incident response capability: Untested → Tabletop-validated
 - Backup resilience: Unknown → Quarterly-tested (RTO/RPO validated)
 - Regulatory posture: Reactive → Proactive (formal risk management, board reporting)

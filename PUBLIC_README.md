@@ -32,7 +32,7 @@ This portfolio documents a cybersecurity risk assessment using:
 1. **Asset and threat inventory:** Identified 18 critical assets and mapped threat scenarios specific to financial services
 2. **Current state review:** Documented technology environment, security controls, and compliance requirements
 3. **Risk scoring:** Applied consistent 5×5 matrix with three distinct risk states — inherent, current residual, and target/post-treatment — to separate existing controls from recommended improvements
-4. **NIST maturity assessment:** Evaluated current capability against NIST CSF 2.0 Subcategories (22 categories across 6 Functions)
+4. **NIST maturity assessment:** Evaluated current capability against NIST CSF 2.0 Subcategories (22 Subcategories across 6 Functions)
 5. **Gap analysis:** Identified gaps between current and target maturity; prioritized remediation based on risk and feasibility
 6. **Remediation roadmap:** Sequenced 23 initiatives over 12 months; estimated budget at ~$475K
 
@@ -42,8 +42,8 @@ This portfolio documents a cybersecurity risk assessment using:
 
 **Risk Summary:**
 - 10 risks identified and prioritized
-- Current residual risk distribution: 4 Critical, 5 High, 1 Moderate
-- Critical risks: Incomplete MFA on admin accounts, unencrypted service account credentials, untested backup restoration, ransomware resilience gaps
+- Current residual risk distribution: 1 Critical, 8 High, 1 Moderate
+- Critical risk: Unencrypted service account credentials exposed in configuration files (RK-002, score 16)
 
 **Maturity:**
 - Current: 1.8 of 5.0 (Initial/Developing stage)

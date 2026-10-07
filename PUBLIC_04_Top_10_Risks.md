@@ -16,7 +16,7 @@
 | **Current Residual Risk (Existing Controls Only)** | |
 | Current Controls | MFA on some accounts; optional for password-only access |
 | Current Residual Likelihood | 3 (MFA partial; many accounts lack MFA) |
-| Current Residual Risk Score | 15 (Critical) |
+| Current Residual Risk Score | 15 (High) |
 | **Target Risk (After Recommendation)** | |
 | Recommended Control | Enforce MFA on all administrative accounts (30 days) |
 | Target Residual Likelihood | 1 (MFA enforcement eliminates credential-only attacks) |
@@ -78,7 +78,7 @@
 | **Current Residual Risk (Existing Controls Only)** | |
 | Current Controls | Veeam backup system; daily full + incremental; last test April 2025 (18 months ago) |
 | Current Residual Likelihood | 3 (Backup exists but untested; no proven recovery capability) |
-| Current Residual Risk Score | 15 (Critical) |
+| Current Residual Risk Score | 15 (High) |
 | **Target Risk (After Recommendation)** | |
 | Recommended Control | Establish quarterly restoration testing; validate RTO/RPO; document runbook |
 | Target Residual Likelihood | 2 (Quarterly testing validates recovery capability; residual risk decreases with proof) |
@@ -202,17 +202,17 @@
 | **Current Residual Risk (Existing Controls Only)** | |
 | Current Controls | EDR (CrowdStrike), WAF, network segmentation, backup strategy; EDR alerting not tuned; IR plan untested |
 | Current Residual Likelihood | 3 (EDR exists but alerts not optimized; IR plan untested; response time unknown) |
-| Current Residual Risk Score | 15 (Critical) |
+| Current Residual Risk Score | 15 (High) |
 | **Target Risk (After Recommendation)** | |
 | Recommended Control | EDR alert tuning (30 days); IR playbook (45 days); backup restoration testing (90 days) |
-| Target Residual Likelihood | 2 (EDR detects and contains; 30-minute response SLA; backup separation validated) |
+| Target Residual Likelihood | 2 (EDR detects; IR playbook provides response procedures; backup separation validated) |
 | Target Residual Risk Score | 10 (High) |
 
 **NIST CSF Mapping:** PR.AA (Access Management), DE.AE (Detection & Analysis), PR.IR (Infrastructure Resilience)
 
 **Current Residual Assessment:** Ransomware defenses exist but are not optimized. EDR is deployed but alert tuning is incomplete. Incident response plan is untested; actual response capability is unknown. Backup strategy exists but has not been validated under ransomware scenario.
 
-**Target Assessment:** EDR alert tuning enables detection and containment within minutes. Tested IR playbook ensures 30-minute escalation. Quarterly backup restoration testing validates recovery under ransomware conditions.
+**Target Assessment:** EDR alert tuning enables faster detection. Tested IR playbook provides containment procedures. Quarterly backup restoration testing validates recovery capability under ransomware conditions.
 
 **Recommendation (Priority 1–2):** Implement EDR tuning and alert escalation (30 days); execute ransomware tabletop exercise (45 days); test backup restoration under ransomware scenario (90 days).
 
@@ -315,10 +315,10 @@
 
 | Rank | Risk | Current Residual Score | Target Score | Priority |
 |------|------|------------------------|---------------|----------|
-| 1 | Untested Backup Restoration | 15 (Critical) | 10 (High) | 1–2 |
-| 2 | Ransomware Attack | 15 (Critical) | 10 (High) | 1–2 |
-| 3 | Incomplete MFA on Admin Accounts | 15 (Critical) | 5 (Moderate) | 1 |
-| 4 | Service Account Credentials in Files | 16 (Critical) | 8 (High) | 1 |
+| 1 | Service Account Credentials in Files | 16 (Critical) | 8 (High) | 1 |
+| 2 | Untested Backup Restoration | 15 (High) | 10 (High) | 1–2 |
+| 3 | Ransomware Attack | 15 (High) | 10 (High) | 1–2 |
+| 4 | Incomplete MFA on Admin Accounts | 15 (High) | 5 (Moderate) | 1 |
 | 5 | Cloud Misconfiguration | 12 (High) | 8 (High) | 2 |
 | 6 | CloudTrail Centralization Gap | 12 (High) | 8 (High) | 2 |
 | 7 | Third-Party Vendor Risk | 8 (High) | 8 (High) | 3 |
@@ -327,7 +327,7 @@
 | 10 | Multi-Region Failover Gap | 5 (Moderate) | 5 (Moderate) | 4 |
 
 **Critical Current Residual Risks (16–20):** RK-002 (Service Accounts)  
-**Critical Current Residual Risks (15):** RK-003 (Backup), RK-007 (Ransomware), RK-001 (MFA)  
+**High Current Residual Risks (15):** RK-001 (MFA), RK-003 (Backup), RK-007 (Ransomware)  
 
 **Priority 1 (Next 30–60 days):** RK-001 (MFA), RK-002 (Service Accounts), RK-007 (Ransomware)  
 **Priority 2 (Next 45–90 days):** RK-003 (Backup), RK-004 (S3), RK-005 (CloudTrail), RK-008 (IR Testing)  

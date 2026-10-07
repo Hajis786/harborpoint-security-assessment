@@ -2,7 +2,7 @@
 
 **Assessment Date:** October 2026  
 **Target Completion:** December 2027  
-**Overall Risk Status:** 🔴 **Critical** (4 Critical residual risks; 5 High residual risks; 1 Moderate residual risk)
+**Overall Risk Status:** 🔴 **Critical** (1 Critical residual risk; 8 High residual risks; 1 Moderate residual risk)
 
 ---
 
@@ -24,10 +24,10 @@
 
 | Risk | Current Residual Score | Priority | Phase Target | Owner | Notes |
 |------|-----------------|----------|---------------|-------|-------|
-| **RK-001: Incomplete MFA** | 15 (Critical) | P1 | Phase 1 (30d) | Security Mgr | Quick win; highest impact per effort; eliminates credential attacks |
 | **RK-002: Service Account Credentials** | 16 (Critical) | P1 | Phase 1 (60d) | Cloud Arch + DBAdmin | Secrets platform; 90-day rotation policy |
-| **RK-003: Untested Backup** | 15 (Critical) | P1 | Phase 1 (45d) | Systems Admin | Quarterly testing schedule; RTO/RPO validation |
-| **RK-007: Ransomware Attack** | 15 (Critical) | P1 | Phase 1 (45d) | Security Mgr | EDR tuning, SIEM alerting, response playbooks |
+| **RK-001: Incomplete MFA** | 15 (High) | P1 | Phase 1 (30d) | Security Mgr | Quick win; highest impact per effort; eliminates credential attacks |
+| **RK-003: Untested Backup** | 15 (High) | P1 | Phase 1 (45d) | Systems Admin | Quarterly testing schedule; RTO/RPO validation |
+| **RK-007: Ransomware Attack** | 15 (High) | P1 | Phase 1 (45d) | Security Mgr | EDR tuning, SIEM alerting, response playbooks |
 | **RK-004: S3 Misconfiguration** | 12 (High) | P2 | Phase 2 (30d) | Cloud Arch | AWS Config rules; automated compliance checks |
 | **RK-005: CloudTrail Gap** | 12 (High) | P2 | Phase 2 (45d) | Cloud Arch + Splunk Admin | Centralize logs; alerting on high-risk API calls |
 | **RK-006: Vendor Risk** | 8 (High) | P2 | Phase 2 (90d) | Security Mgr | Assessment template; SLAs; incident response agreements |
