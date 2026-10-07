@@ -2,7 +2,10 @@
 
 ## Executive Summary
 
-This roadmap prioritizes 23 initiatives across four phases (Q1–Q4 2027) to address the top 10 risks and close NIST CSF 2.0 maturity gaps. Sequencing respects dependencies and resource constraints. Total estimated investment: **~$475K + 0.5 FTE security engineering.**
+This roadmap prioritizes 23 initiatives across four phases (Q1–Q4 2027) to address the top 10 risks and close NIST CSF 2.0 maturity gaps. Sequencing respects dependencies and resource constraints. 
+
+**Total estimated investment (simulated planning):** ~$475K + 0.5 FTE security engineering  
+*Cost estimates are for prioritization and planning purposes. Actual costs depend on vendor pricing, labor rates, and implementation scope.*
 
 ---
 

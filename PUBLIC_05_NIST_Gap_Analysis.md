@@ -32,7 +32,7 @@ NIST Cybersecurity Framework 2.0 describes six Functions organizing cybersecurit
 **Current State: 1.5 (Initial)**  
 Policies exist but are not consistently enforced. Risk management is informal. Board and executive engagement is reactive rather than strategic.
 
-**GV.RM (Risk Management Program):**
+**GV.RM (Risk Management Strategy):**
 - Current: 1 (Risk assessment exists but not formalized; findings not tracked to closure)
 - Target: 3 (Formal annual risk assessment; risk register; board reporting)
 - Gap: Need formalized risk assessment process, board reporting, and risk acceptance documentation
@@ -182,18 +182,20 @@ This represents movement from **Initial/Developing (1.8) to Defined (2.8)**, foc
 
 ## Investment & Timeline
 
-**Year 1 Budget Estimate:** ~$475K  
-- MFA enforcement + training: $15K
-- Secrets management platform + implementation: $40K
-- Backup restoration testing + runbooks: $20K
-- AWS Config + SIEM extension: $60K
-- Incident response training + tabletop: $30K
-- Third-party risk program: $20K
-- Data classification + audit logging: $50K
-- Governance structure + board reporting: $25K
-- Staffing (additional 0.5 FTE security engineer): $120K
-- Vendor assessment + PAM evaluation: $30K
-- Contingency (10%): $50K
+**Year 1 Budget Estimate (Simulated Planning):** ~$475K  
+*Note: These are simulated planning estimates for prioritization. Actual costs depend on vendor selection, labor rates, and implementation approach.*
+
+- MFA enforcement + training: ~$15K ($)
+- Secrets management platform + implementation: ~$40K ($$)
+- Backup restoration testing + runbooks: ~$20K ($)
+- AWS Config + SIEM extension: ~$60K ($$)
+- Incident response training + tabletop: ~$30K ($$)
+- Third-party risk program: ~$20K ($)
+- Data classification + audit logging: ~$50K ($$)
+- Governance structure + board reporting: ~$25K ($)
+- Staffing (additional 0.5 FTE security engineer): ~$120K ($$$ — annual allocation)
+- Vendor assessment + PAM evaluation: ~$30K ($$)
+- Contingency (10%): ~$50K
 
 **Timeframe:** Phased over 12 months (Phases 1–4)
 

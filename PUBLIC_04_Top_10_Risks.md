@@ -9,16 +9,24 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 4 (High) |
 | Inherent Impact | 5 (Severe) |
 | Inherent Risk Score | 20 (Critical) |
+| **Current Residual Risk (Existing Controls Only)** | |
 | Current Controls | MFA on some accounts; optional for password-only access |
-| Residual Likelihood | 1 (MFA enforcement eliminates credential-only attacks) |
-| Residual Risk Score | 5 (Moderate) |
+| Current Residual Likelihood | 3 (MFA partial; many accounts lack MFA) |
+| Current Residual Risk Score | 15 (Critical) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | Enforce MFA on all administrative accounts (30 days) |
+| Target Residual Likelihood | 1 (MFA enforcement eliminates credential-only attacks) |
+| Target Residual Risk Score | 5 (Moderate) |
 
-**NIST CSF Mapping:** GV.RM (Risk Management Program), PR.AA (Access Management)
+**NIST CSF Mapping:** GV.RM (Risk Management Strategy), PR.AA (Access Management)
 
-**Residual Assessment:** With MFA enforcement, phishing attacks alone cannot compromise admin accounts; attacker would need to compromise both credential and MFA token. Password spray becomes ineffective. Residual likelihood drops from 4 to 1.
+**Current Residual Assessment:** Partial MFA deployment leaves admin accounts vulnerable. Phishing and credential spray remain viable attack vectors for non-MFA accounts.
+
+**Target Assessment:** Full MFA enforcement means phishing alone cannot compromise admin accounts; attacker must compromise both credential and MFA token. Password spray becomes ineffective.
 
 **Recommendation (Priority 1):** Enforce MFA on all administrative accounts within 30 days. Establish policy: no admin access without MFA.
 
@@ -32,16 +40,24 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 4 (High) |
 | Inherent Impact | 4 (High) |
 | Inherent Risk Score | 16 (Critical) |
+| **Current Residual Risk (Existing Controls Only)** | |
 | Current Controls | Credentials stored in configuration files; no centralized secrets management |
-| Residual Likelihood | 2 (Secrets platform reduces exposure; still depends on implementation) |
-| Residual Risk Score | 8 (High) |
+| Current Residual Likelihood | 4 (No change; credentials remain exposed in files) |
+| Current Residual Risk Score | 16 (Critical) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | Migrate to secrets management platform (60 days); 90-day rotation |
+| Target Residual Likelihood | 2 (Centralized secrets platform reduces exposure risk) |
+| Target Residual Risk Score | 8 (High) |
 
 **NIST CSF Mapping:** PR.AA (Access Management), PR.DS (Data Security)
 
-**Residual Assessment:** Migration to a secrets management platform (AWS Secrets Manager, HashiCorp Vault) reduces exposure. Residual likelihood assumes proper secret rotation and access controls. Monitoring for unauthorized secret access remains critical.
+**Current Residual Assessment:** Service account credentials remain exposed in configuration files. No centralized access control or rotation mechanism. Compromise of any code repository or configuration file yields database access.
+
+**Target Assessment:** Migration to AWS Secrets Manager or equivalent centralizes credential management, enables automated rotation, and provides audit logging. Access must be controlled via IAM policies.
 
 **Recommendation (Priority 1):** Migrate all service account credentials to secrets management platform within 60 days. Implement secret rotation policy (90-day cycle).
 
@@ -55,18 +71,26 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 3 (Moderate) |
 | Inherent Impact | 5 (Severe) |
 | Inherent Risk Score | 15 (Critical) |
-| Current Controls | Veeam backup system; daily full + incremental; last full restoration test April 2025 |
-| Residual Likelihood | 3 (Untested restoration doesn't reduce risk; testing required to validate RTO/RPO) |
-| Residual Risk Score | 15 (Critical) |
+| **Current Residual Risk (Existing Controls Only)** | |
+| Current Controls | Veeam backup system; daily full + incremental; last test April 2025 (18 months ago) |
+| Current Residual Likelihood | 3 (Backup exists but untested; no proven recovery capability) |
+| Current Residual Risk Score | 15 (Critical) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | Establish quarterly restoration testing; validate RTO/RPO; document runbook |
+| Target Residual Likelihood | 2 (Quarterly testing validates recovery capability; residual risk decreases with proof) |
+| Target Residual Risk Score | 10 (High) |
 
-**NIST CSF Mapping:** RC.RP (Recovery Planning & Processes), PR.IR (Infrastructure Resilience)
+**NIST CSF Mapping:** RC.RP (Recovery Planning), PR.IR (Infrastructure Resilience)
 
-**Residual Assessment:** Backup systems provide no reduction in residual risk without proven restoration capability. Last documented test was 18 months ago; quarterly testing is required. Untested backups are a liability, not a protection.
+**Current Residual Assessment:** Backup systems exist but have not been validated. Last documented full restoration test was 18 months ago. Untested backups provide false assurance; actual recovery capability is unknown.
 
-**Recommendation (Priority 2):** Establish quarterly backup restoration testing schedule and documented runbook within 45 days. Execute first test immediately. Track RTO/RPO against business requirements.
+**Target Assessment:** Quarterly restoration testing with documented runbook and validated RTO/RPO targets reduces residual risk. Testing must occur before backup system failure.
+
+**Recommendation (Priority 1–2):** Establish quarterly backup restoration testing schedule and documented runbook within 45 days. Execute first test immediately. Track RTO/RPO against business requirements.
 
 ---
 
@@ -78,16 +102,24 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 3 (Moderate) |
 | Inherent Impact | 4 (High) |
 | Inherent Risk Score | 12 (High) |
+| **Current Residual Risk (Existing Controls Only)** | |
 | Current Controls | AWS IAM policies; S3 encryption at rest; no continuous compliance monitoring |
-| Residual Likelihood | 2 (Regular AWS Config compliance checks reduce exposure; depends on execution) |
-| Residual Risk Score | 8 (High) |
+| Current Residual Likelihood | 3 (Manual IAM policies only; no automated detection of misconfiguration) |
+| Current Residual Risk Score | 12 (High) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | AWS Config compliance rules; automated remediation; monthly manual audit |
+| Target Residual Likelihood | 2 (Continuous compliance monitoring reduces exposure window) |
+| Target Residual Risk Score | 8 (High) |
 
-**NIST CSF Mapping:** PR.AA (Access Management), PR.IR (Infrastructure Resilience)
+**NIST CSF Mapping:** PR.AA (Access Management), PR.DS (Data Security)
 
-**Residual Assessment:** AWS Config compliance rules can monitor bucket policies and ACLs continuously. Residual likelihood assumes Config is enabled, evaluated, and actioned on (not just logged).
+**Current Residual Assessment:** AWS IAM policies and S3 encryption provide baseline controls but no real-time detection of misconfiguration. Changes to bucket policies are not automatically monitored or alerted.
+
+**Target Assessment:** AWS Config enables continuous compliance monitoring. Misconfigurations are detected within minutes and can be remediated automatically or manually reviewed before exposure.
 
 **Recommendation (Priority 2):** Enable AWS Config rules for S3 bucket compliance within 45 days. Establish automated remediation for non-compliant buckets. Monthly manual audit of IAM policies.
 
@@ -101,16 +133,24 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 3 (Moderate) |
 | Inherent Impact | 4 (High) |
 | Inherent Risk Score | 12 (High) |
+| **Current Residual Risk (Existing Controls Only)** | |
 | Current Controls | CloudTrail logging enabled; CloudWatch monitoring partial; not forwarded to Splunk |
-| Residual Likelihood | 2 (Centralization to SIEM enables alerting; depends on rule tuning) |
-| Residual Risk Score | 8 (High) |
+| Current Residual Likelihood | 3 (CloudTrail logs captured but not centralized; detection relies on manual review) |
+| Current Residual Risk Score | 12 (High) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | Centralize CloudTrail to Splunk (45 days); implement alerting on high-risk API calls (60 days) |
+| Target Residual Likelihood | 2 (Automated SIEM alerting reduces detection time from hours to minutes) |
+| Target Residual Risk Score | 8 (High) |
 
-**NIST CSF Mapping:** DE.CM (Continuous Monitoring), GV.RM (Risk Management Program)
+**NIST CSF Mapping:** DE.CM (Continuous Monitoring), GV.RM (Risk Management Strategy)
 
-**Residual Assessment:** CloudTrail logs forwarded to Splunk with alerting rules reduce detection time from hours to minutes. Residual likelihood assumes rule-based alerting on high-risk API calls (IAM policy changes, credential creation, S3 public access grants).
+**Current Residual Assessment:** CloudTrail logs exist but are not centralized to SIEM. Investigation of AWS-based attacks requires manual log review. Detection latency is hours to days.
+
+**Target Assessment:** Centralization to Splunk with rule-based alerting enables near-real-time detection. Alerting rules cover high-risk actions (IAM policy changes, credential creation, S3 public access grants).
 
 **Recommendation (Priority 2):** Centralize CloudTrail logs to Splunk within 45 days. Implement alerting rules for high-risk API actions within 60 days.
 
@@ -124,16 +164,24 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 2 (Low) |
 | Inherent Impact | 4 (High) |
 | Inherent Risk Score | 8 (High) |
-| Current Controls | Informal vendor risk review; no formal risk assessment process |
-| Residual Likelihood | 2 (Formal assessment doesn't reduce vendor's risk; improves HarborPoint's detection/response) |
-| Residual Risk Score | 8 (High) |
+| **Current Residual Risk (Existing Controls Only)** | |
+| Current Controls | Informal vendor risk review; no formal risk assessment process; no SLAs or incident response agreements |
+| Current Residual Likelihood | 2 (Vendor likelihood unchanged; HarborPoint has no detection mechanism) |
+| Current Residual Risk Score | 8 (High) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | Formal vendor risk assessment template; SLAs; incident response agreements with vendors |
+| Target Residual Likelihood | 2 (Formal assessment improves detection/response but does not reduce vendor breach likelihood) |
+| Target Residual Risk Score | 8 (High) |
 
 **NIST CSF Mapping:** GV.SC (Supply Chain Risk Management), PR.DS (Data Security)
 
-**Residual Assessment:** Formal third-party risk assessment improves HarborPoint's ability to detect and respond, but does not reduce vendor breach likelihood. Residual score remains high; mitigation focuses on detection (API monitoring, access controls, incident response with vendors).
+**Current Residual Assessment:** Vendor risk is managed informally. No documented assessment of vendor security posture, no SLAs, no incident response agreements. HarborPoint has limited visibility into vendor breach notifications.
+
+**Target Assessment:** Formal vendor risk assessment process improves detection and incident response but does not reduce the likelihood of vendor compromise. Residual score remains high as vendor breach is external to HarborPoint's control.
 
 **Recommendation (Priority 3):** Develop third-party risk assessment template and evaluate Salesforce, ADP, payment processor within 90 days. Establish vendor breach notification agreement and incident response procedures.
 
@@ -147,16 +195,24 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 3 (Moderate) |
 | Inherent Impact | 5 (Severe) |
 | Inherent Risk Score | 15 (Critical) |
-| Current Controls | EDR (CrowdStrike), WAF, network segmentation, backup strategy |
-| Residual Likelihood | 2 (EDR detects and contains ransomware; assumes rapid response) |
-| Residual Risk Score | 10 (High) |
+| **Current Residual Risk (Existing Controls Only)** | |
+| Current Controls | EDR (CrowdStrike), WAF, network segmentation, backup strategy; EDR alerting not tuned; IR plan untested |
+| Current Residual Likelihood | 3 (EDR exists but alerts not optimized; IR plan untested; response time unknown) |
+| Current Residual Risk Score | 15 (Critical) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | EDR alert tuning (30 days); IR playbook (45 days); backup restoration testing (90 days) |
+| Target Residual Likelihood | 2 (EDR detects and contains; 30-minute response SLA; backup separation validated) |
+| Target Residual Risk Score | 10 (High) |
 
 **NIST CSF Mapping:** PR.AA (Access Management), DE.AE (Detection & Analysis), PR.IR (Infrastructure Resilience)
 
-**Residual Assessment:** CrowdStrike Falcon detects ransomware behavioral signatures and contains execution. Residual likelihood assumes 1) CrowdStrike alerts are monitored, 2) incident response activates within 30 minutes, 3) backup separation and testing prevent total data loss.
+**Current Residual Assessment:** Ransomware defenses exist but are not optimized. EDR is deployed but alert tuning is incomplete. Incident response plan is untested; actual response capability is unknown. Backup strategy exists but has not been validated under ransomware scenario.
+
+**Target Assessment:** EDR alert tuning enables detection and containment within minutes. Tested IR playbook ensures 30-minute escalation. Quarterly backup restoration testing validates recovery under ransomware conditions.
 
 **Recommendation (Priority 1–2):** Implement EDR tuning and alert escalation (30 days); execute ransomware tabletop exercise (45 days); test backup restoration under ransomware scenario (90 days).
 
@@ -170,18 +226,26 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 2 (Low) |
 | Inherent Impact | 4 (High) |
 | Inherent Risk Score | 8 (High) |
-| Current Controls | Incident response plan exists; no documented testing or drills |
-| Residual Likelihood | 2 (Testing improves readiness; does not reduce incident probability) |
-| Residual Risk Score | 8 (High) |
+| **Current Residual Risk (Existing Controls Only)** | |
+| Current Controls | Incident response plan exists; no documented testing, drills, or role clarity |
+| Current Residual Likelihood | 2 (Plan exists but untested; actual capability unknown) |
+| Current Residual Risk Score | 8 (High) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | Tabletop exercise (60 days); incident playbooks (documented roles, escalation, timelines); quarterly drills |
+| Target Residual Likelihood | 2 (Testing improves readiness; does not reduce incident likelihood) |
+| Target Residual Risk Score | 8 (High) |
 
-**NIST CSF Mapping:** PR.IR (Infrastructure Resilience), ID.RA (Risk Assessment)
+**NIST CSF Mapping:** RS.MA (Response Mobilization), RS.MI (Response Mitigation)
 
-**Residual Assessment:** Incident response plans are hypothetical until tested. Tabletop exercises and simulations reveal gaps in procedures, tool integration, and role clarity. Residual likelihood remains stable; mitigation reduces time-to-containment.
+**Current Residual Assessment:** IR plan is written but has never been tested. Roles are not clearly defined. Tool integration is untested. Actual response capability is unknown.
 
-**Recommendation (Priority 3):** Conduct ransomware tabletop exercise (60 days); document lessons learned; update IR plan (90 days); execute credential compromise simulation (6 months).
+**Target Assessment:** Tabletop exercises and simulations reveal gaps in procedures, tool integration, and role clarity. Regular testing ensures procedures remain current and staff remain trained. Residual likelihood remains stable; mitigation is improved time-to-containment and reduced recovery time.
+
+**Recommendation (Priority 2):** Conduct ransomware tabletop exercise (60 days); document lessons learned; establish annual IR drill schedule; execute credential compromise simulation (6 months).
 
 ---
 
@@ -193,18 +257,26 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 1 (Unlikely) |
 | Inherent Impact | 5 (Severe) |
 | Inherent Risk Score | 5 (Moderate) |
+| **Current Residual Risk (Existing Controls Only)** | |
 | Current Controls | Single-region deployment; no documented failover; backup strategy exists |
-| Residual Likelihood | 1 (Multi-region failover would reduce, but does not exist; current state unchanged) |
-| Residual Risk Score | 5 (Moderate) |
+| Current Residual Likelihood | 1 (AWS regional outage is rare; single-region deployment is the only gap) |
+| Current Residual Risk Score | 5 (Moderate) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | Multi-region failover architecture (business case assessment; 6+ months implementation) |
+| Target Residual Likelihood | 1 (Multi-region failover reduces RTO; likelihood remains low due to AWS SLA) |
+| Target Residual Risk Score | 5 (Moderate) |
 
 **NIST CSF Mapping:** RC.RP (Recovery Planning), PR.IR (Infrastructure Resilience)
 
-**Residual Assessment:** This risk is primarily a gap (multi-region failover not implemented). Residual likelihood remains 1 (AWS regional outage is rare, ~99.9% availability SLA). Business impact is high; mitigation is architectural (expensive). RTO tolerance (2 hours for portal) must drive investment decision.
+**Current Residual Assessment:** Single-region deployment means portal unavailability during regional outages. Backup strategy supports data recovery but not failover. AWS regional outages are rare (~99.9% SLA) but impact is high.
 
-**Recommendation (Priority 4—Lower Priority for 175-person bank):** Evaluate multi-region DR/failover strategy; estimated cost $100K–$150K + ongoing; assess business case. If not pursued, document risk acceptance and establish alternate recovery procedures (manual failover, data restoration).
+**Target Assessment:** Multi-region failover reduces RTO to minutes. Likelihood remains low due to AWS redundancy. Investment is architectural and expensive ($$$+).
+
+**Recommendation (Priority 4—Lower Priority for 175-person bank):** Evaluate multi-region DR/failover strategy as business case (estimated cost $$$ range + ongoing operations); assess against RTO/RPO targets. If not pursued, document risk acceptance and establish alternate recovery procedures (manual failover, data restoration from backups).
 
 ---
 
@@ -216,41 +288,51 @@
 
 | Metric | Score |
 |--------|-------|
+| **Inherent Risk (No Controls)** | |
 | Inherent Likelihood | 2 (Low) |
 | Inherent Impact | 4 (High) |
 | Inherent Risk Score | 8 (High) |
-| Current Controls | MFA on some accounts; manual privilege management; no PAM platform |
-| Residual Likelihood | 2 (PAM platform improves logging/isolation; requires implementation rigor) |
-| Residual Risk Score | 8 (High) |
+| **Current Residual Risk (Existing Controls Only)** | |
+| Current Controls | MFA on some accounts; manual privilege management; no PAM platform; no session recording |
+| Current Residual Likelihood | 2 (Partial MFA; no centralized audit of privileged access) |
+| Current Residual Risk Score | 8 (High) |
+| **Target Risk (After Recommendation)** | |
+| Recommended Control | PAM platform implementation (CyberArk/Delinea); JIT access; session recording; least-privilege policies |
+| Target Residual Likelihood | 2 (PAM improves audit and isolation but does not eliminate insider risk) |
+| Target Residual Risk Score | 8 (High) |
 
-**NIST CSF Mapping:** ID.AM (Asset Management), GV.OV (Oversight)
+**NIST CSF Mapping:** ID.AM (Asset Management), PR.AA (Access Management)
 
-**Residual Assessment:** PAM platform (e.g., CyberArk, Delinea) centralizes privileged credential management and session recording. Residual likelihood assumes implementation of least-privilege access, just-in-time (JIT) provisioning, and audit logging.
+**Current Residual Assessment:** Privileges are managed manually without centralized audit or session recording. Privileged account access is not tracked. Insider threat risk is unmitigated.
 
-**Recommendation (Priority 3):** Evaluate PAM platform options (60 days); implement JIT access workflow for database and admin accounts (6 months); estimated cost $50K–$75K + implementation.
+**Target Assessment:** PAM platform centralizes credential management, enforces least-privilege access, and records privileged sessions. Just-in-time (JIT) provisioning reduces standing privilege exposure. Residual likelihood remains stable; insider threat is inherent.
+
+**Recommendation (Priority 3):** Evaluate PAM platform options (60 days); implement JIT access workflow for database and admin accounts (6+ months); plan for $$ investment range.
 
 ---
 
-## Summary: Top 10 by Residual Risk Score
+## Summary: Top 10 by Current Residual Risk Score
 
-| Rank | Risk | Residual Score | Priority |
-|------|------|-----------------|----------|
-| 1 | Incomplete MFA on Admin Accounts | 5 (Moderate) | 1 |
-| 2 | Untested Backup Restoration | 15 (Critical) | 2 |
-| 3 | Service Account Credentials in Files | 8 (High) | 1 |
-| 4 | Cloud Misconfiguration | 8 (High) | 2 |
-| 5 | CloudTrail Centralization Gap | 8 (High) | 2 |
-| 6 | Third-Party Vendor Risk | 8 (High) | 3 |
-| 7 | Ransomware Attack | 10 (High) | 1–2 |
-| 8 | Incident Response Testing Gap | 8 (High) | 3 |
-| 9 | Multi-Region Failover Gap | 5 (Moderate) | 4 |
-| 10 | PAM Gap | 8 (High) | 3 |
+| Rank | Risk | Current Residual Score | Target Score | Priority |
+|------|------|------------------------|---------------|----------|
+| 1 | Untested Backup Restoration | 15 (Critical) | 10 (High) | 1–2 |
+| 2 | Ransomware Attack | 15 (Critical) | 10 (High) | 1–2 |
+| 3 | Incomplete MFA on Admin Accounts | 15 (Critical) | 5 (Moderate) | 1 |
+| 4 | Service Account Credentials in Files | 16 (Critical) | 8 (High) | 1 |
+| 5 | Cloud Misconfiguration | 12 (High) | 8 (High) | 2 |
+| 6 | CloudTrail Centralization Gap | 12 (High) | 8 (High) | 2 |
+| 7 | Third-Party Vendor Risk | 8 (High) | 8 (High) | 3 |
+| 8 | Incident Response Testing Gap | 8 (High) | 8 (High) | 2 |
+| 9 | PAM Gap | 8 (High) | 8 (High) | 3 |
+| 10 | Multi-Region Failover Gap | 5 (Moderate) | 5 (Moderate) | 4 |
 
-**Critical Residual Risks:** RK-003 (Untested Backup) remains Critical even after control assessment because untested procedures provide no actual protection.
+**Critical Current Residual Risks (16–20):** RK-002 (Service Accounts)  
+**Critical Current Residual Risks (15):** RK-003 (Backup), RK-007 (Ransomware), RK-001 (MFA)  
 
-**Priority 1 (Next 30–60 days):** RK-001, RK-002, RK-007  
-**Priority 2 (Next 45–90 days):** RK-003, RK-004, RK-005  
-**Priority 3–4:** RK-006, RK-008, RK-009, RK-010
+**Priority 1 (Next 30–60 days):** RK-001 (MFA), RK-002 (Service Accounts), RK-007 (Ransomware)  
+**Priority 2 (Next 45–90 days):** RK-003 (Backup), RK-004 (S3), RK-005 (CloudTrail), RK-008 (IR Testing)  
+**Priority 3:** RK-006 (Vendor), RK-010 (PAM)  
+**Priority 4:** RK-009 (Multi-Region)
 
 ---
 

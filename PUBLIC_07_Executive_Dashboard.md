@@ -2,7 +2,7 @@
 
 **Assessment Date:** October 2026  
 **Target Completion:** December 2027  
-**Overall Risk Status:** 🔴 **Critical** (3 Critical residual risks; 7 High residual risks)
+**Overall Risk Status:** 🔴 **Critical** (4 Critical residual risks; 5 High residual risks; 1 Moderate residual risk)
 
 ---
 
@@ -22,18 +22,18 @@
 
 ## Top 10 Risks — Residual Scores & Remediation Timeline
 
-| Risk | Residual Score | Priority | Phase Target | Owner | Notes |
+| Risk | Current Residual Score | Priority | Phase Target | Owner | Notes |
 |------|-----------------|----------|---------------|-------|-------|
-| **RK-003: Untested Backup** | 15 (Critical) | P2 | Phase 1 (45d) | Systems Admin | Most critical; affects all recovery targets |
-| **RK-007: Ransomware Attack** | 10 (High) | P1–2 | Phase 1 (45d) | Security Mgr | EDR, SIEM alerting, response playbooks |
-| **RK-002: Service Accounts** | 8 (High) | P1 | Phase 1 (60d) | Cloud Arch + DBAdmin | Secrets platform; 90-day rotation |
-| **RK-001: Incomplete MFA** | 5 (Moderate) | P1 | Phase 1 (30d) | Security Mgr | Quick win; highest impact per effort |
-| **RK-004: S3 Misconfiguration** | 8 (High) | P2 | Phase 2 (30d) | Cloud Arch | AWS Config rules; automated checks |
-| **RK-005: CloudTrail Gap** | 8 (High) | P2 | Phase 2 (45d) | Cloud Arch + Splunk Admin | Centralize; alerting on high-risk API calls |
-| **RK-006: Vendor Risk** | 8 (High) | P3 | Phase 2 (90d) | Security Mgr | Assessment template; SLAs; incident response |
-| **RK-008: IR Testing Gap** | 8 (High) | P3 | Phase 1 (60d) | Security Mgr | Tabletop; playbooks; role clarity |
-| **RK-009: Multi-Region Failover** | 5 (Moderate) | P4 | Phase 3 (45d) | Cloud Arch | Business case; defer unless RTO < 2h |
-| **RK-010: PAM Gap** | 8 (High) | P3 | Phase 3 (90d) | Cloud Arch + DBAdmin | Platform eval; JIT provisioning |
+| **RK-001: Incomplete MFA** | 15 (Critical) | P1 | Phase 1 (30d) | Security Mgr | Quick win; highest impact per effort; eliminates credential attacks |
+| **RK-002: Service Account Credentials** | 16 (Critical) | P1 | Phase 1 (60d) | Cloud Arch + DBAdmin | Secrets platform; 90-day rotation policy |
+| **RK-003: Untested Backup** | 15 (Critical) | P1 | Phase 1 (45d) | Systems Admin | Quarterly testing schedule; RTO/RPO validation |
+| **RK-007: Ransomware Attack** | 15 (Critical) | P1 | Phase 1 (45d) | Security Mgr | EDR tuning, SIEM alerting, response playbooks |
+| **RK-004: S3 Misconfiguration** | 12 (High) | P2 | Phase 2 (30d) | Cloud Arch | AWS Config rules; automated compliance checks |
+| **RK-005: CloudTrail Gap** | 12 (High) | P2 | Phase 2 (45d) | Cloud Arch + Splunk Admin | Centralize logs; alerting on high-risk API calls |
+| **RK-006: Vendor Risk** | 8 (High) | P2 | Phase 2 (90d) | Security Mgr | Assessment template; SLAs; incident response agreements |
+| **RK-008: IR Plan Not Tested** | 8 (High) | P1 | Phase 1 (60d) | Security Mgr | Tabletop exercise; playbooks; role clarity |
+| **RK-010: PAM Gap** | 8 (High) | P3 | Phase 3 (90d) | Cloud Arch + DBAdmin | Platform evaluation and POC; JIT provisioning |
+| **RK-009: Multi-Region Failover** | 5 (Moderate) | P4 | Phase 3 (45d) | Cloud Arch | Business case; defer unless RTO < 2h; acceptable interim risk |
 
 ---
 

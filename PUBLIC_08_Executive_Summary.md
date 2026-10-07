@@ -21,28 +21,28 @@ HarborPoint's security controls are **partially deployed** across the organizati
 
 ---
 
-## Critical Risks (Residual Score 10+)
+## Critical Risks (Current Residual Score 15+)
 
-| Risk | Residual Score | Business Impact | Mitigation Timeline |
+| Risk | Current Residual Score | Business Impact | Mitigation Timeline |
 |------|-----------------|-----------------|-------------------|
-| **RK-003: Untested Backup Restoration** | 15 (Critical) | Complete data loss; business continuity failure; regulatory non-compliance | 45 days (Phase 1) |
-| **RK-007: Ransomware Attack on Portal & Databases** | 10 (High) | Business disruption; payment processing halt; revenue loss | 45 days (Phase 1) |
+| **RK-001: Incomplete MFA** | 15 (Critical) | Credential compromise; admin account takeover; lateral movement to databases; data breach | 30 days (Phase 1) |
+| **RK-002: Service Account Credentials in Config Files** | 16 (Critical) | Unencrypted credentials in repositories; broad database access; ransomware lateral movement | 60 days (Phase 1) |
+| **RK-003: Untested Backup Restoration** | 15 (Critical) | Complete data loss; business continuity failure; regulatory non-compliance; revenue loss | 45 days (Phase 1) |
+| **RK-007: Ransomware Attack on Portal & Databases** | 15 (Critical) | Business disruption; payment processing halt; extended recovery window if backup untested; regulatory penalties | 45 days (Phase 1) |
 
-**Key Insight:** Both risks are survivable with existing controls IF those controls are tested and operational. RK-003 (backup) requires immediate quarterly testing schedule. RK-007 (ransomware) requires EDR alert tuning, SIEM integration, and response playbook codification.
+**Key Insight:** All four critical risks are Phase 1 priorities. RK-001 and RK-002 are quick wins (30–60 days) with high leverage. RK-003 and RK-007 require complementary controls (backup testing + ransomware response playbooks).
 
 ---
 
-## High-Risk Findings (Residual Score 8)
+## High-Risk Findings (Current Residual Score 8–12)
 
-| Risk | Category | Root Cause | Quick Fix | Full Remediation |
-|------|----------|-----------|-----------|-----------------|
-| **RK-001: Incomplete MFA** | Access Control | MFA optional for some admin accounts | 30-day enforcement policy | Q1 Phase 1 |
-| **RK-002: Service Account Credentials in Config Files** | Secrets Management | No centralized secrets platform | Secrets Manager (AWS) POC | 60-day Phase 1 |
-| **RK-004: S3 Bucket Misconfiguration** | Cloud Security | No continuous compliance monitoring | AWS Config rules (manual audit) | 30-day Phase 2 |
-| **RK-005: CloudTrail Logs Not Centralized to SIEM** | Logging & Monitoring | CloudTrail enabled; logs not forwarded to Splunk | Splunk forwarder setup | 45-day Phase 2 |
-| **RK-006: Third-Party Vendor Risk** | Vendor Management | Informal vendor risk assessment | Risk assessment template | 90-day Phase 2 |
-| **RK-008: Incident Response Plan Not Tested** | Incident Response | Plan exists; no documented tabletop exercises | Schedule tabletop | 60-day Phase 1 |
-| **RK-010: Privilege Access Management (PAM) Gap** | Privileged Access | Manual privilege management; no audit trail | PAM platform evaluation | 90-day Phase 3 |
+| Risk | Category | Current Residual Score | Root Cause | Quick Fix | Full Remediation |
+|------|----------|-----------|-----------|-----------|-----------------|
+| **RK-004: S3 Bucket Misconfiguration** | Cloud Security | 12 (High) | No continuous compliance monitoring | AWS Config rules (manual audit) | 30-day Phase 2 |
+| **RK-005: CloudTrail Logs Not Centralized to SIEM** | Logging & Monitoring | 12 (High) | CloudTrail enabled; logs not forwarded to Splunk | Splunk forwarder setup | 45-day Phase 2 |
+| **RK-006: Third-Party Vendor Risk** | Vendor Management | 8 (High) | Informal vendor risk assessment | Risk assessment template | 90-day Phase 2 |
+| **RK-008: Incident Response Plan Not Tested** | Incident Response | 8 (High) | Plan exists; no documented tabletop exercises | Schedule tabletop | 60-day Phase 1 |
+| **RK-010: Privilege Access Management (PAM) Gap** | Privileged Access | 8 (High) | Manual privilege management; no audit trail | PAM platform evaluation POC | 90-day Phase 3 |
 
 ---
 
@@ -65,7 +65,8 @@ Current maturity is **1.8 of 5.0 (Initial/Developing)**. This means HarborPoint 
 
 ## Remediation Investment & Timeline
 
-**Total Year 1 Budget: ~$475K**
+**Total Year 1 Budget: ~$475K (Simulated Planning Estimates)**
+*Note: These are simulated planning estimates for prioritization. Actual costs depend on vendor selection, labor rates, and implementation approach.*
 - Tools & services: ~$155K (secrets platform, PAM evaluation, AWS Config, SIEM expansion, vulnerability scanning)
 - External services: ~$40K (consultant: threat hunting, risk assessment, tabletop facilitation)
 - Staffing (additional 0.5 FTE security engineer): ~$120K
@@ -85,7 +86,7 @@ Current maturity is **1.8 of 5.0 (Initial/Developing)**. This means HarborPoint 
 ## Top Recommendations (Priority Sequence)
 
 ### Immediate (Next 30 Days)
-1. **Enforce MFA on all administrative accounts** — Eliminates credential-only attacks; reduces likelihood from 4 to 1
+1. **Enforce MFA on all administrative accounts** — Current residual likelihood 3 (partial MFA) → Target 1 (full enforcement); eliminates credential-only attacks on admin accounts
 2. **Establish Executive Security Steering Committee** — Enable budget approval, risk acceptance, governance oversight
 3. **Schedule backup restoration test** — Validate RTO/RPO against business requirements; identify restoration gaps
 
@@ -155,14 +156,14 @@ The roadmap is **not** a compliance audit; it is a **business-driven** remediati
 
 **Vote to Approve:**
 1. Establishment of Executive Security Steering Committee (monthly oversight, risk acceptance authority)
-2. Year 1 remediation roadmap execution (4-phase approach; $475K total investment)
+2. Year 1 remediation roadmap execution (4-phase approach; ~$475K total investment — simulated planning estimates for prioritization)
 3. Staffing plan (additional 0.5 FTE security engineer; reallocation of existing staff to remediation)
 4. Risk acceptance for High/Moderate risks during Phase 1 (explicitly documented; quarterly review)
 
 **Expected Outcomes (12 Months):**
 - NIST CSF maturity: 1.8 → 2.8 (Initial → Defined)
-- Critical risks reduced: 2 → 0 (RK-003, RK-007 mitigated to Moderate/Low)
-- High risks reduced: 7 → 3–4 (remaining High risks require Phase 2+ investments)
+- Critical risks reduced: 4 → 1–2 (RK-001, RK-002, RK-003, RK-007 mitigated to High/Moderate by end of Phase 1)
+- High risks reduced: 5 → 2–3 (remaining High risks require Phase 2+ investments)
 - Incident response capability: Untested → Tabletop-validated
 - Backup resilience: Unknown → Quarterly-tested (RTO/RPO validated)
 - Regulatory posture: Reactive → Proactive (formal risk management, board reporting)

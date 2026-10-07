@@ -31,7 +31,7 @@ This portfolio documents a cybersecurity risk assessment using:
 
 1. **Asset and threat inventory:** Identified 18 critical assets and mapped threat scenarios specific to financial services
 2. **Current state review:** Documented technology environment, security controls, and compliance requirements
-3. **Risk scoring:** Applied consistent 5×5 matrix; calculated residual likelihood after control impact analysis
+3. **Risk scoring:** Applied consistent 5×5 matrix with three distinct risk states — inherent, current residual, and target/post-treatment — to separate existing controls from recommended improvements
 4. **NIST maturity assessment:** Evaluated current capability against NIST CSF 2.0 Subcategories (22 categories across 6 Functions)
 5. **Gap analysis:** Identified gaps between current and target maturity; prioritized remediation based on risk and feasibility
 6. **Remediation roadmap:** Sequenced 23 initiatives over 12 months; estimated budget at ~$475K
@@ -41,9 +41,9 @@ This portfolio documents a cybersecurity risk assessment using:
 ## Key Findings
 
 **Risk Summary:**
-- 20 risks identified: 4 Critical, 10 High, 6 Moderate
+- 10 risks identified and prioritized
+- Current residual risk distribution: 4 Critical, 5 High, 1 Moderate
 - Critical risks: Incomplete MFA on admin accounts, unencrypted service account credentials, untested backup restoration, ransomware resilience gaps
-- Residual risk (after current controls): 2 Critical, 5 High, 8 Moderate, 5 Low
 
 **Maturity:**
 - Current: 1.8 of 5.0 (Initial/Developing stage)
@@ -107,7 +107,7 @@ Risks are scored using a 5×5 matrix (Likelihood × Impact):
 - Moderate: 4–7  
 - Low: 1–3  
 
-**Residual Likelihood:** Adjusted after considering control effectiveness. Example: Phishing risk is Likelihood 4 (high baseline), but MFA enforcement reduces residual to Likelihood 1 (MFA defeats credential-only attacks). Documented judgment—not percentage multipliers.
+**Residual Likelihood:** Adjusted after considering CURRENT control effectiveness. Example: MFA risk is Likelihood 3 (residual, because some MFA is implemented but not enforced everywhere). Recommended MFA enforcement would reduce it to Likelihood 1. Documented judgment—not percentage multipliers. **Three-state model:** Inherent (no controls) → Current Residual (existing controls only) → Target (after recommendations).
 
 ### Maturity Model
 
@@ -161,9 +161,9 @@ Subcategory identifiers are official NIST designations (e.g., GV.RM, PR.AA, DE.C
 - Subcategory identifiers change between framework versions. Always verify against the official NIST publication before including identifiers in published work.
 
 **On Financial Services Risk:**
-- Credential-based attacks (phishing, password spray) dominate the threat model. MFA is the highest-leverage control; everything else is secondary.
+- Credential compromise and backup resilience are equally critical. For HarborPoint, MFA enforcement is an immediate priority (30-day timeline, high impact per effort), while backup restoration testing is equally urgent from a residual risk perspective (both scored 15 Critical residual).
 - Third-party risk is often underestimated because it's handled informally. A single compromised Salesforce instance affects customer data access controls.
-- Disaster recovery testing gets deferred. The "we have backups" confidence overrides the discipline to actually validate restoration.
+- Disaster recovery testing gets deferred. The "we have backups" confidence overrides the discipline to actually validate restoration. Untested backups provide false assurance.
 
 **On Communicating Risk:**
 - Executives don't need to see all 20 risks. Top 5–7 drive decision-making; the rest provide context.
